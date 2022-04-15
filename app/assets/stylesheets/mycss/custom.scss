@@ -1,0 +1,22 @@
+@import "bootstrap";
+
+h1 {
+    text-align: center;
+}
+
+nav {
+    background-color: dodgerblue;
+    padding: 12px;
+    color: white;
+
+    .navlink{
+        text-decoration: none;
+        color: white;
+        font-size: 18px;
+    }
+}
+
+.user-card {
+    width: 200px;
+    margin-bottom: 10px;
+}

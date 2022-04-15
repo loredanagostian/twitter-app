@@ -2,11 +2,9 @@
 
 <ul>
 <% @users.each do |user| %>
-  <li style="border-bottom: 1px solid black">
-    name: <%= user.name %><br>
-    email: <%= user.email %><br>
-    age: <%= user.age %><br>
-    gender: <%= user.gender %><br>
+  <li>
+    <!-- render partial: 'user', locals: { user: @ser } -->
+    <%= render user %>
   </li>
 <% end %>
 </ul>
