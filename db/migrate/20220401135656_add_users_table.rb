@@ -11,6 +11,7 @@ class AddUsersTable < ActiveRecord::Migration[7.0]
 
       #varsta
       t.integer :age
+
     end
   end
 end

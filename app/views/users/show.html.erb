@@ -1,13 +1,13 @@
-<% if @user.nil? %>
-  Nu exista user-ul cerut.
-  <br>
-<% else %>
+<%# if @user.nil? %>
+<!--  Nu exista user-ul cerut.-->
+<!--  <br>-->
+<%# else %>
   <!--
    render partial: 'user', locals: { user: @user }
   -->
   <%= render @user %>
   <br>
-<% end %>
+<%# end %>
 
 <div>
   <%= link_to('Back', '/users') %>
