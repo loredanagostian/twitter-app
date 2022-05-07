@@ -1,3 +1,7 @@
+<% if flash[:success] %>
+  <div class="alert alert-primary"> <%= flash[:success] %></div>
+<% end %>
+
 <div class="card">
   <div class="card-body">
     <h5 class="card-title"><%= link_to(user.name, "/users/#{user.id}") %></h5>
