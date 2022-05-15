@@ -72,3 +72,9 @@ group :test do
 end
 
 gem 'bootstrap', '~> 5.1.3'
+
+gem "jquery-rails"
+
+gem 'will_paginate', '~> 3.3'
+gem 'bootstrap-will_paginate'
+gem 'will_paginate-bootstrap4'

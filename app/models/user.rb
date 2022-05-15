@@ -6,4 +6,6 @@ class User < ApplicationRecord
   # validates :phone_number, presence: true
 
   has_secure_password
+
+  has_many :posts, dependent: :destroy
 end

@@ -1,13 +1,15 @@
-<%# if @user.nil? %>
-<!--  Nu exista user-ul cerut.-->
-<!--  <br>-->
-<%# else %>
-  <!--
-   render partial: 'user', locals: { user: @user }
-  -->
-  <%= render @user %>
-  <br>
-<%# end %>
+<div class="row">
+  <div class="col-md-4">
+    <%= render @user %>
+    <br>
+  </div>
+
+  <div class="col-md-6">
+    <h3> Posts (<%= @posts.count %>) </h3>
+    <%= render @posts %>
+    <%= will_paginate(@posts, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "pagination bg-transparent") %>
+  </div>
+</div>
 
 <div>
   <%= link_to('Back', '/users') %>
