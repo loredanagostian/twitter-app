@@ -5,12 +5,8 @@
 <div class="row justify-content-center">
   <div class="col-xs-12 col-sm-5">
 
-      <% @user.errors.full_messages.each do |error| %>
-        <div class="alert alert-primary">
-          <div>
-          <%= error %>
-          </div>
-        </div>
+      <% @user.errors.full_messages.each do |_| %>
+        <%= render partial: 'shared/error_messages', locals: { object: @user } %>
       <% end %>
 
     <%= form_for @user do |f| %>

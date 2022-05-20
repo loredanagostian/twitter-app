@@ -9,6 +9,16 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    def check_user
+        unless logged_in?
+            redirect_to login_path
+        end
+    end
+
+    def admin_user
+        redirect_to (root_url) unless current_user.admin?
+    end
+
     # def alta_ruta
     #    # render html: 'Ai intrat pe alta ruta.'
     # end
