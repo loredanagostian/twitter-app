@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :check_user, only: [ :create ]
 
   def index
-    @posts = Post.all
+    @posts = Post.all.paginate(page: params[:page], per_page: 5)
   end
 
   def show

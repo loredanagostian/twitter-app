@@ -28,4 +28,7 @@ Rails.application.routes.draw do
 
   get 'users/:id/following', to: 'users#following'
   get 'users/:id/followers', to: 'users#followers'
+
+  get 'statistics', to: 'users#statistics'
+  post 'update/:id', to: 'users#update'
 end

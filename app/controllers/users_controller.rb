@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :check_user, only: [ :index, :show, :destroy ]
-  before_action :admin_user, only: [ :destroy ]
+  before_action :admin_user, only: [ :destroy, :statistics, :update ]
   before_action :check_delete_user, only: [ :destroy ]
 
   def index
@@ -41,6 +41,7 @@ class UsersController < ApplicationController
 
       # redirect_to "/users/#{@user.id}"
       # SAU
+      log_in(@user) # HW 5
       redirect_to user_path(@user)
     else
       # flash[:error] = 'Validation has failed!'
@@ -64,6 +65,20 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page], per_page: 2)
     render 'users/show_follow'
+  end
+
+  def statistics #HW 7
+    if current_user.try(:admin?)
+      @users = User.where(admin: false).paginate(page: params[:page], per_page: 2)
+      @admins = User.where(admin: true).paginate(page: params[:page], per_page: 2)
+      render 'statistics'
+    end
+  end
+
+  def update
+    @user = User.where(id: params[:id]).first
+    @user.admin = !@user.admin
+    redirect_to '/statistics'
   end
 
   private

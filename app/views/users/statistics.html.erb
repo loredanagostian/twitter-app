@@ -1,0 +1,23 @@
+<div class="row p-3">
+  <div class="col-md-4">
+    <h3>
+      There are <%= @admins.count %> admins.
+    </h3>
+
+    <%= render @admins %>
+    <%= will_paginate @admins%>
+  </div>
+
+  <div class="col-md-4">
+    <h3>
+      There are <%= @users.count %> users.
+    </h3>
+
+    <%= render @users %>
+    <%= will_paginate %>
+  </div>
+</div>
+
+<div>
+  <%= link_to('Back', '/posts') %>
+</div>
