@@ -15,10 +15,17 @@ Rails.application.routes.draw do
   # get 'users/:id', to: 'users#show'
   # post 'users', to: 'users#create'
 
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :posts
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+
+  get 'users/:id/following', to: 'users#following'
+  get 'users/:id/followers', to: 'users#followers'
 end

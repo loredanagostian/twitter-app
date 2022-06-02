@@ -11,5 +11,14 @@ mike:
   gender: other
   phone_number: 123456789
   admin: true
+
+andrei:
+  name: Andrei
+  email: andy@gmail.com
+  age: 22
+  gender: other
+  phone_number: 123456733
+  admin: false
+
 two: {}
 # column: value
