@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :check_user, only: [ :create ]
+
   def index
     @comments = Comment.all
   end

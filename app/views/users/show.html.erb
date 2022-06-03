@@ -8,6 +8,8 @@
 <!--      Nu exista user-ul.-->
     <%# else %>
       <div class="p-3">
+        <%= render 'follow_form' if logged_in? %>
+        <br>
         <%= render @user %>
         <%= render 'shared/stats' %>
       </div>
@@ -27,6 +29,7 @@
           <% end %>
         <% end %>
       </div>
+
     <%# end %>
     <br>
   </div>
