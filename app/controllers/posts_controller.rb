@@ -5,8 +5,13 @@ class PostsController < ApplicationController
     @posts = Post.all.paginate(page: params[:page], per_page: 5)
   end
 
+  def new
+    @post = Post.new(params[:post])
+  end
+
   def show
-    @post = Post.where(params[:id]).first
+    @post = Post.where(id: params[:id]).first
+    @comments = @post.comments
 
     if @post.nil?
       redirect_to "/posts"

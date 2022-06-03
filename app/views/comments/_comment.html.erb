@@ -1,0 +1,8 @@
+ <li class="list-group-item d-flex justify-content-between">
+   <span class="badge bg-primary rounded-pill">
+     <% user = User.where(id: comment.user_id).first %>
+     <%= link_to user.name, user_path(user), class: "color-picker" %>
+   </span>
+
+   "<%= comment.text %>" at <%= comment.updated_at %>
+ </li>

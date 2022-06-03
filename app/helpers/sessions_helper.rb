@@ -20,4 +20,10 @@ module SessionsHelper
   def current_user?(user)
     current_user == user
   end
+
+  def current_post
+    if session[:post_id].present?
+      Post.find(session[:post_id])
+    end
+  end
 end
