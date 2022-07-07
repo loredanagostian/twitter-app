@@ -15,9 +15,7 @@
     <%= render @users %>
   </div>
 
-  <%= will_paginate %>
+  <%= will_paginate(@users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "paginate bg-transparent") %>
 </div>
 
-<div>
-  <%= link_to('Back', '/posts') %>
-</div>
+<%= link_to('Back', '/posts', class:"btn btn-outline-secondary") %>

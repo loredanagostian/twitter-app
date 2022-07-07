@@ -9,8 +9,8 @@
       <div class="p-3">
         <%= render 'follow_form' if logged_in? %>
         <br>
-        <%= render @user %>
         <%= render 'shared/stats' %>
+        <%= render @user %>
       </div>
 
       <div class="p-3">
@@ -37,8 +37,10 @@
     <div class="col-md-6">
       <h3> Posts (<%= @posts.count %>) </h3>
       <%= render @posts %>
-      <%= will_paginate(@posts, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "pagination bg-transparent") %>
+      <%= will_paginate(@posts, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "paginate bg-transparent") %>
     </div>
   <%# end %>
 </div>
+
+<%= link_to('Back', '/posts', class:"btn btn-outline-secondary") %>
 

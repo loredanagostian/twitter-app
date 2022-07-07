@@ -1,12 +1,28 @@
-<li class="reply list-group-item d-flex">
-   <span class="badge bg-primary rounded-pill">
-     <% user = User.where(id: respond.user_id).first %>
-     <%= link_to user.name, user_path(user), class: "color-picker" %>
-   </span>
+<div class="reply card border-1 rounded border-primary col-sm-11">
+ <li class="list-group-item d-flex">
+   <div class="grid-container">
+     <div class="item1 avatar">
+       <% if respond.user.avatar.present? %>
+         <%= image_tag respond.user.avatar, class: "avatar" %>
+       <% end %>
+     </div>
 
-    &nbsp replied "<%= respond.content %>" <%= time_ago_in_words(respond.updated_at) %> ago.
+     <div class="item2">
+       <b>
+         <% user = User.where(id: respond.user_id).first %>
+         <%= link_to user.name, user_path(user), class: 'no-dec' %>
+       </b>
+     </div>
 
-  <% if current_user?(user) %>
-    <%= link_to 'delete', respond, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
-  <% end %>
-</li>
+     <div class="item4">
+       <%= respond.content %>
+     </div>
+
+      <div class="item6">
+        <i>
+          <%= time_ago_in_words(respond.updated_at) %> ago
+        </i>
+      </div>
+   </div>
+ </li>
+</div>

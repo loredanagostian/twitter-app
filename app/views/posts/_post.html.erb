@@ -1,10 +1,15 @@
-<div class="card col-md-7 border-1 rounded border-primary">
+<div class="card border-1 rounded border-primary">
   <div class="card-body">
-    <h5 class="card-title"><%= link_to(post.title, post_path(post.id)) %></h5>
+    <h5 class="card-title">
+      <% if post.user.avatar.present? %>
+        <%= image_tag post.user.avatar, class: "avatar" %>
+      <% end %>
+      <%= link_to(post.title, post_path(post.id), class: 'no-dec') %>
+    </h5>
 
     <p class="card-text">
       Description: <%= post.description %><br>
-      Posted by <%= link_to(post.user.name, post.user) %> <%= time_ago_in_words(post.created_at) %> ago <br>
+      Posted by <%= link_to(post.user.name, post.user, class: 'no-dec') %> <%= time_ago_in_words(post.created_at) %> ago <br>
       Edited <%= time_ago_in_words(post.updated_at) %> ago
 
     <h6> Comments (<%= post.comments.count %>) </h6>
@@ -14,7 +19,7 @@
 
     <div>
       <% if current_user?(post.user) %>
-        <%= link_to 'Delete', post, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
+        <%= link_to 'Delete', post, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger mt-2'  %>
       <% end %>
     </div>
 
@@ -33,11 +38,6 @@
         </div>
         <%= f.submit 'Post your comment', class: 'btn btn-primary mt-2'%>
       <% end %>
-    </div>
-
-    <br>
-    <div>
-      <%= link_to('Back', '/posts') %>
     </div>
   </div>
 </div>

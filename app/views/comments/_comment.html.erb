@@ -1,29 +1,53 @@
-<div class="card border-1 rounded border-primary">
-  <li class="list-group-item d-flex">
-     <span class="badge bg-primary rounded-pill">
-       <% user = User.where(id: comment.user_id).first %>
-       <%= link_to user.name, user_path(user), class: "color-picker" %>
-     </span>
+<div class="row">
+  <div class="col-sm-11">
+    <div class="card border-1 rounded border-primary">
+      <li class="list-group-item d-flex">
+        <div class="grid-container">
+          <div class="item1 avatar">
+            <% if comment.user.avatar.present? %>
+              <%= image_tag comment.user.avatar, class: "avatar" %>
+            <% end %>
+          </div>
 
-      &nbsp commented "<%= comment.text %>" <%= time_ago_in_words(comment.updated_at) %> ago.
+          <div class="item2">
+            <b>
+              <% user = User.where(id: comment.user_id).first %>
+              <%= link_to user.name, user_path(user), class: 'no-dec' %>
+            </b>
+          </div>
 
-      <% if current_user?(user) %>
-        <%= link_to 'delete', comment, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
-      <% end %>
+          <div class="item4">
+            <%= comment.text %>
+          </div>
 
-      <%= render comment.responds %>
-    </li>
-    <br>
-
-    <div>
-      <%= form_with(model: [comment, comment.responds.build]) do |f| %>
-        <div class="form-group">
-          <%= f.label 'New reply' %>
-          <%= f.text_field :content, class: 'form-control' %>
+          <div class="item6">
+            <i>
+              <%= time_ago_in_words(comment.updated_at) %> ago
+            </i>
+          </div>
         </div>
-        <%= f.submit 'Post your reply', class: 'btn btn-primary mt-2'%>
-      <% end %>
+      </li>
     </div>
+  </div>
+
+  <div class="col-sm">
+    <% if current_user?(user) %>
+      <%= link_to 'Delete', comment, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger mt-2'  %>
+    <% end %>
+  </div>
+</div>
+
+<%= render comment.responds %>
+<br>
+
+<div>
+  <%= form_with(model: [comment, comment.responds.build]) do |f| %>
+    <div class="form-group">
+      <%= f.label 'New reply' %>
+      <%= f.text_field :content, class: 'form-control card border-1 rounded border-primary col-sm-11' %>
+    </div>
+    <%= f.submit 'Post your reply', class: 'btn btn-primary mt-2'%>
+  <% end %>
 </div>
 <br>
 

@@ -15,7 +15,7 @@
     <div class="col-md-6">
       <h3> <%= @title %></h3>
       <%= render @users %>
-      <%= will_paginate(@users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "pagination bg-transparent") %>
+      <%= will_paginate(@users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "paginate bg-transparent") %>
     </div>
   <% end %>
 </div>

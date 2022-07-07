@@ -6,6 +6,10 @@
   <% end %>
 
   <%= form_for @user do |f| %>
+    <div>
+      <%= f.file_field :avatar, class: "form-control" %>
+    </div><br>
+
     <div class="input-group flex-nowrap">
       <%= f.label :name, "Change name", class: "input-group-text" %>
       <div class="col-md-8">

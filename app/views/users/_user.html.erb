@@ -4,7 +4,13 @@
 
 <div class="card border-1 rounded border-primary">
   <div class="card-body">
-    <h5 class="card-title"><%= link_to(user.name, "/users/#{user.id}") %></h5>
+    <h5 class="card-title">
+      <% if user.avatar.present? %>
+        <%= image_tag user.avatar, class: "avatar" %>
+      <% end %>
+      <%= link_to(user.name, "/users/#{user.id}", class: 'no-dec') %>
+    </h5>
+
     <p class="card-text">
       email: <%= user.email %><br>
       age: <%= user.age %><br>
@@ -14,7 +20,7 @@
 
     <% if current_user.admin? %>
       <% unless current_user?(user) %>
-        <%= link_to 'delete', user, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+        <%= link_to 'Delete', user, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger mt-2' %>
   <% end %>
     <% end %>
   </div>

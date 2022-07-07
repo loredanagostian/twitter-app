@@ -91,7 +91,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :gender, :age, :phone_number)
+    params.require(:user).permit(:name, :email, :password, :gender, :age, :phone_number, :avatar)
   end
 
   def check_delete_user

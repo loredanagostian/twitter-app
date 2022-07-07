@@ -2,6 +2,6 @@
 
 <ul>
   <%= render @posts %>
-  <%= will_paginate %>
+  <%= will_paginate(@posts, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "paginate bg-transparent") %>
 </ul>
 
