@@ -26,7 +26,15 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :comments do
+    resources :responds
+  end
+
+  resources :responds
+  resources :comments
+
   resources :relationships, only: [:create, :destroy]
+  resources :users
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

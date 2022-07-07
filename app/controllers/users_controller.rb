@@ -87,7 +87,7 @@ class UsersController < ApplicationController
   end
 
   def check_delete_user
-    user = User.find(params[:id])
+    user = User.where(params[:id])
     if user.name[0] != 'A' && user.name[0] != 'a'
       redirect_to users_path
     end

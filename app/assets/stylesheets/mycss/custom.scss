@@ -16,10 +16,25 @@ nav {
     }
 }
 
+.paginate {
+    background-color: white;
+    color: white;
+}
+
 .color-picker {
     color: white;
 }
 
 .user-card {
     margin-bottom: 10px;
+}
+
+.reply {
+   margin-left: 35px;
+}
+
+.on-center {
+    width:100%;
+    display: flex;
+    justify-content: center;
 }

@@ -1,0 +1,12 @@
+<li class="reply list-group-item d-flex">
+   <span class="badge bg-primary rounded-pill">
+     <% user = User.where(id: respond.user_id).first %>
+     <%= link_to user.name, user_path(user), class: "color-picker" %>
+   </span>
+
+    &nbsp replied "<%= respond.content %>" <%= time_ago_in_words(respond.updated_at) %> ago.
+
+  <% if current_user?(user) %>
+    <%= link_to 'delete', respond, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
+  <% end %>
+</li>

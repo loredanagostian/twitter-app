@@ -1,8 +1,30 @@
- <li class="list-group-item d-flex">
-   <span class="badge bg-primary rounded-pill">
-     <% user = User.where(id: comment.user_id).first %>
-     <%= link_to user.name, user_path(user), class: "color-picker" %>
-   </span>
+<div class="card border-1 rounded border-primary">
+  <li class="list-group-item d-flex">
+     <span class="badge bg-primary rounded-pill">
+       <% user = User.where(id: comment.user_id).first %>
+       <%= link_to user.name, user_path(user), class: "color-picker" %>
+     </span>
 
-   "<%= comment.text %>" <%= time_ago_in_words(comment.updated_at) %> ago.
- </li>
+      &nbsp commented "<%= comment.text %>" <%= time_ago_in_words(comment.updated_at) %> ago.
+
+      <% if current_user?(user) %>
+        <%= link_to 'delete', comment, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
+      <% end %>
+
+      <%= render comment.responds %>
+    </li>
+    <br>
+
+    <div>
+      <%= form_with(model: [comment, comment.responds.build]) do |f| %>
+        <div class="form-group">
+          <%= f.label 'New reply' %>
+          <%= f.text_field :content, class: 'form-control' %>
+        </div>
+        <%= f.submit 'Post your reply', class: 'btn btn-primary mt-2'%>
+      <% end %>
+    </div>
+</div>
+<br>
+
+

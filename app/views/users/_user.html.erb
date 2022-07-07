@@ -14,22 +14,8 @@
 
     <% if current_user.admin? %>
       <% unless current_user?(user) %>
-        <%= link_to 'delete', user, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
-
-        <%# unless user.try(:admin?) %>
-<!--          <br>-->
-          <%#=  link_to 'make admin', user, :method => :put %>
-          <%#= button_to "make admin", {:controller => :users, :action => :update, :user_id=> user.id} , :method => :update  %>
-        <%# end %>
-
-      <%  end %>
+        <%= link_to 'delete', user, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+  <% end %>
     <% end %>
   </div>
 </div>
-
-<!--name: <%#= link_to(user.name, "/users/#{user.id}") %><br>-->
-
-<!--name: <a href = "/users/<%#= user.id %>"> <%#= user.name %> </a><br>-->
-<!--email: <%#= user.email %><br>-->
-<!--age: <%#= user.age %><br>-->
-<!--gender: <%#= user.gender %><br> -->

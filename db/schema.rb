@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_02_215233) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_07_141108) do
   create_table "comments", force: :cascade do |t|
     t.string "text"
     t.integer "post_id", null: false
@@ -40,6 +40,30 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_02_215233) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
+  create_table "replies", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
+    t.integer "comment_id", null: false
+    t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_replies_on_comment_id"
+    t.index ["post_id"], name: "index_replies_on_post_id"
+    t.index ["user_id"], name: "index_replies_on_user_id"
+  end
+
+  create_table "responds", force: :cascade do |t|
+    t.text "content", null: false
+    t.integer "comment_id", null: false
+    t.integer "post_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_responds_on_comment_id"
+    t.index ["post_id"], name: "index_responds_on_post_id"
+    t.index ["user_id"], name: "index_responds_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -53,4 +77,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_02_215233) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "replies", "comments"
+  add_foreign_key "replies", "posts"
+  add_foreign_key "replies", "users"
+  add_foreign_key "responds", "comments"
+  add_foreign_key "responds", "posts"
+  add_foreign_key "responds", "users"
 end
