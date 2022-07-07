@@ -76,14 +76,22 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.where(id: params[:id]).first
-    @user.admin = !@user.admin
-    redirect_to '/statistics'
+    @user = User.find(params[:id])
+
+    if @user.update(user_params)
+      redirect_to user_path(current_user)
+    else
+      render 'user/edit', status: 422
+    end
+  end
+
+  def edit
+    @user = User.find(params[:id])
   end
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:name, :email, :password, :gender, :age, :phone_number)
   end
 
   def check_delete_user

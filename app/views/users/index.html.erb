@@ -1,10 +1,8 @@
 <h2 class="p-2"> Users (<%= @users.count %>)</h2>
 
-<ul>
+<ul class="col-md-7">
 <% @users.each do |user| %>
-  <li>
     <!-- render partial: 'user', locals: { user: @ser } -->
     <%= render user %>
-  </li>
 <% end %>
 </ul>

@@ -1,12 +1,11 @@
-<div>
-  <%= link_to('Back', '/users') %>
-</div>
-
 <div class="row">
   <div class="col-md-5">
-    <%# if @user.nil? %>
-<!--      Nu exista user-ul.-->
-    <%# else %>
+      <% if current_user?(@user) %>
+        <div class="p-3">
+          <%= button_to "Edit profile", edit_user_path, :method => :get, :form_class => "user", class: "btn btn-outline-primary" %>
+        </div>
+      <% end %>
+
       <div class="p-3">
         <%= render 'follow_form' if logged_in? %>
         <br>

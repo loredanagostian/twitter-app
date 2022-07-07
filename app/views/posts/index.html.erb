@@ -1,11 +1,7 @@
 <h2 class="p-2"> Posts (<%= @posts.count %>)</h2>
 
-<div>
-  <div>
-    <ul>
-      <%= render @posts %>
-      <%= will_paginate %>
-    </ul>
-  </div>
-</div>
+<ul>
+  <%= render @posts %>
+  <%= will_paginate %>
+</ul>
 

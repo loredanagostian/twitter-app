@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
     def helloblabla
         if logged_in?
-            redirect_to users_path
+                redirect_to posts_path
         else
             redirect_to login_path
         end
