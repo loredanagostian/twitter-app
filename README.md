@@ -1,24 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Developed a Twitter website using Ruby and Ruby on Rails framework. 
+Implemented "Follow" button with its Followers-Followings relationship, "Leave a comment" option and also "Reply to this comment" area.
+Learnt how to work with Ruby' s framework and laid the foundation in managing all the opportunities that Ruby offers.
