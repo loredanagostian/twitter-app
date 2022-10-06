@@ -4,9 +4,6 @@ class UsersController < ApplicationController
   before_action :check_delete_user, only: [ :destroy ]
 
   def index
-    # @ - variabila globala
-    # fara @ - variabila locala
-
     @users = User.all
   end
 
@@ -15,7 +12,6 @@ class UsersController < ApplicationController
 
     if @user.nil?
       redirect_to "/users"
-      # Am pus mesaj in show.html.erb
     else
       @posts = @user.posts.paginate(page: params[:page], per_page: 5)
       @post = Post.new
@@ -27,24 +23,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    # user = User.new( name: params['user']['name'],
-    #                  email: params['user']['email'],
-    #                  age: params['user']['age'],
-    #                  gender: params['user']['gender'],
-    #                  phone_number: params['user']['phone_number']
-    # )
-
     @user = User.new(user_params)
 
     if @user.save
-      # flash[:success] = 'User has been created successfully!'
-
-      # redirect_to "/users/#{@user.id}"
-      # SAU
-      log_in(@user) # HW 5
+      log_in(@user) 
       redirect_to user_path(@user)
     else
-      # flash[:error] = 'Validation has failed!'
       render 'users/new'
     end
   end
@@ -52,7 +36,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to '/users'
+    redirect_to users_path
   end
 
   def following
@@ -67,7 +51,7 @@ class UsersController < ApplicationController
     render 'users/show_follow'
   end
 
-  def statistics #HW 7
+  def statistics 
     if current_user.try(:admin?)
       @users = User.where(admin: false).paginate(page: params[:page], per_page: 2)
       @admins = User.where(admin: true).paginate(page: params[:page], per_page: 2)
@@ -87,6 +71,12 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+  end
+
+  def make_admin
+    user = User.find params[:id]
+    user.update( :admin => true )
+    redirect_to users_path
   end
 
   private

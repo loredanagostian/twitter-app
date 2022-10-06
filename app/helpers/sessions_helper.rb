@@ -7,7 +7,7 @@ module SessionsHelper
     session[:user_id] = nil
   end
 
-  def current_user #utilizatorul care e logat in sistem in acest moment
+  def current_user 
     if session[:user_id].present?
       User.find(session[:user_id])
     end

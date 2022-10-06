@@ -19,8 +19,8 @@
     </p>
 
     <% if current_user.admin? %>
-      <% unless current_user?(user) %>
-        <%= link_to 'Delete', user, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger mt-2' %>
+      <% if !current_user?(user) && !user.admin? %>
+        <%= button_to "Make Admin", {action: "make_admin", id: user.id }, method: :put, class: 'btn btn-success mt-2' %>
   <% end %>
     <% end %>
   </div>

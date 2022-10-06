@@ -45,4 +45,6 @@ Rails.application.routes.draw do
 
   get 'statistics', to: 'users#statistics'
   post 'update/:id', to: 'users#update'
+
+  put 'admin/:id' => 'users#make_admin', :as => "make_admin"
 end
